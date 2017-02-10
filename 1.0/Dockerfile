@@ -12,17 +12,13 @@ LABEL io.k8s.description="Nodejs - NPM" \
       io.openshift.s2i.destination="/tmp"
 
 # Install NodeJS e NPM
-RUN yum install -y --enablerepo=centosplus \
-    tar unzip bc which lsof && \
-    yum clean all -y && \
-    curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
-  && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
-  && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
-  && grep " node-v$NODE_VERSION-linux-x64.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
+RUN yum install -y --enablerepo=centosplus tar unzip bc which lsof wget \
+    && yum clean all -y \
+    && wget https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz \
   && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
-  && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
+  && rm "node-v$NODE_VERSION-linux-x64.tar.xz" \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
-  && curl -SLO "https://nodejs.org/dist/npm/npm-$NPM_VERSION.tgz" \
+  && wget https://nodejs.org/dist/npm/npm-$NPM_VERSION.tgz"
   && mkdir -p /opt/npm \
   && tar -xzxf "npm-$NPM_VERSION.tgz" -C /opt/npm --strip-components=1 \
   && ln -s /opt/npm/bin/npm /usr/local/bin/npm \
