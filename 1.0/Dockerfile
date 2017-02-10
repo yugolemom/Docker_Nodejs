@@ -3,6 +3,7 @@ FROM openshift/base-centos7
 MAINTAINER Hugo C. Lima <yugolemom@gmail.com>
 
 ENV NODE_VERSION 7.5.0
+ENV NPM_VERSION 1.4.12
 
 LABEL io.k8s.description="Nodejs - NPM" \
       io.k8s.display-name="Nodejs" \
@@ -21,10 +22,12 @@ RUN yum install -y --enablerepo=centosplus \
   && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
-  && npm install -g nodemon 
- 	
+  && curl -SLO "https://nodejs.org/dist/npm/$NPM_VERSION.tgz" \
+  && tar -xJf "$NPM_VERSION.tgz" -C /usr/local --strip-components=1 \
+  && rm NPM_VERSION.tgz \
+  && npm install -g nodemon
+
 COPY .s2i/bin/ $STI_SCRIPTS_PATH
 
 USER 1001
 EXPOSE 8080
-
