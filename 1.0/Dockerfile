@@ -22,9 +22,9 @@ RUN yum install -y --enablerepo=centosplus \
   && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
-  && curl -SLO "https://nodejs.org/dist/npm/$NPM_VERSION.tgz" \
-  && tar -xJf "$NPM_VERSION.tgz" -C /usr/local --strip-components=1 \
-  && rm $NPM_VERSION.tgz \
+  && curl -SLO "https://nodejs.org/dist/npm/npm-$NPM_VERSION.tgz" \
+  && tar -xJf "npm-$NPM_VERSION.tgz" -C /usr/local --strip-components=1 \
+  && rm npm-$NPM_VERSION.tgz \
   && npm install -g nodemon
 
 COPY .s2i/bin/ $STI_SCRIPTS_PATH
