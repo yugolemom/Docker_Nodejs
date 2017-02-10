@@ -11,7 +11,7 @@ LABEL io.k8s.description="Nodejs - NPM" \
       io.openshift.tags="builder,nodejs" \
       io.openshift.s2i.destination="/tmp"
 
-# Install Maven
+# Install NodeJS e NPM
 RUN yum install -y --enablerepo=centosplus \
     tar unzip bc which lsof && \
     yum clean all -y && \
