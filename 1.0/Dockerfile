@@ -23,8 +23,7 @@ RUN yum install -y --enablerepo=centosplus tar unzip bc which lsof wget \
   && tar -xzxf "npm-$NPM_VERSION.tgz" -C /opt/npm --strip-components=1 \
   && rm /usr/local/bin/npm \
   && ln -s /opt/npm/bin/npm /usr/local/bin/npm \
-  && rm npm-$NPM_VERSION.tgz \
-  && npm install -g nodemon
+  && rm npm-$NPM_VERSION.tgz
 
 COPY .s2i/bin/ $STI_SCRIPTS_PATH
 
