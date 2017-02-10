@@ -19,10 +19,7 @@ RUN yum install -y --enablerepo=centosplus tar unzip bc which lsof wget \
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
   && wget "https://nodejs.org/dist/npm/npm-$NPM_VERSION.tgz" \
-  && mkdir -p /opt/npm \
-  && tar -xzxf "npm-$NPM_VERSION.tgz" -C /opt/npm --strip-components=1 \
-  && rm /usr/local/bin/npm \
-  && ln -s /opt/npm/bin/npm /usr/local/bin/npm \
+  && tar -xzxf "npm-$NPM_VERSION.tgz" -C /usr/local --strip-components=1 \
   && rm npm-$NPM_VERSION.tgz
 
 COPY .s2i/bin/ $STI_SCRIPTS_PATH
