@@ -24,7 +24,7 @@ RUN yum install -y --enablerepo=centosplus \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
   && curl -SLO "https://nodejs.org/dist/npm/$NPM_VERSION.tgz" \
   && tar -xJf "$NPM_VERSION.tgz" -C /usr/local --strip-components=1 \
-  && rm NPM_VERSION.tgz \
+  && rm $NPM_VERSION.tgz \
   && npm install -g nodemon
 
 COPY .s2i/bin/ $STI_SCRIPTS_PATH
