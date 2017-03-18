@@ -24,5 +24,7 @@ RUN yum install -y --enablerepo=centosplus tar unzip bc which lsof wget \
 
 COPY .s2i/bin/ $STI_SCRIPTS_PATH
 
+RUN $PROMPT_COMMAND && npm install -g nodemon
+
 USER 1001
 EXPOSE 8080
