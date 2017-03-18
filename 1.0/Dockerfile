@@ -17,8 +17,7 @@ RUN yum install -y --enablerepo=centosplus tar curl unzip bc which lsof wget \
   && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
-  && wget "https://nodejs.org/dist/npm/npm-$NPM_VERSION.tgz" \
-  && curl -L https://www.npmjs.org/install.sh | sh 
+  && wget "https://nodejs.org/dist/npm/npm-$NPM_VERSION.tgz"
 
 COPY .s2i/bin/ $STI_SCRIPTS_PATH
 
