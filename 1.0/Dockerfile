@@ -11,7 +11,7 @@ LABEL io.k8s.description="Nodejs - NPM" \
       io.openshift.s2i.destination="/tmp"
 
 # Install NodeJS e NPM
-RUN yum install -y --enablerepo=centosplus tar unzip bc which lsof wget \
+RUN yum install -y --enablerepo=centosplus tar unzip bc which lsof wget curl \
     && yum clean all -y \
     && wget "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
   && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
