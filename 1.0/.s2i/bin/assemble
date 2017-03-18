@@ -7,7 +7,8 @@ cp -Rf /tmp/src/. $LOCAL_SOURCE_DIR
 chgrp -R 0 $LOCAL_SOURCE_DIR
 chmod -R g+rw $LOCAL_SOURCE_DIR
 
-npm install
+npm install -g nodemon
+npm install 
 
 fix-permissions ./
 echo "...Vamos comecar!!"
