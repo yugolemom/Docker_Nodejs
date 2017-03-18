@@ -7,7 +7,16 @@ cp -Rf /tmp/src/. $LOCAL_SOURCE_DIR
 chgrp -R 0 $LOCAL_SOURCE_DIR
 chmod -R g+rw $LOCAL_SOURCE_DIR
 
+# INSTALL NPM 
+
+curl -L "https://www.npmjs.org/install.sh" | sh 
+
+# INSTALL NODEMON 
+
 npm install -g nodemon
+
+# INSTALL APP - BIBLI REPOS
+
 npm install 
 
 fix-permissions ./
