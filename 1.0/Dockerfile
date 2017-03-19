@@ -1,4 +1,4 @@
-FROM openshift/base-centos7
+FROM centos/s2i-base-centos7
 
 MAINTAINER Hugo C. Lima <yugolemom@gmail.com>
 
@@ -11,7 +11,7 @@ LABEL io.k8s.description="Nodejs - NPM" \
       io.openshift.expose-services="8080:http,8888:ping" \
       io.openshift.tags="builder,nodejs" \
       com.redhat.dev-mode="DEV_MODE:false" \
-      com.redhat.deployments-dir="/opt/app-root/src" \
+      com.redhat.deployments-dir="/opt/app-root/src"
 
 # Install NodeJS e NPM
 RUN yum install -y --enablerepo=centosplus tar unzip bc which lsof wget curl \
